@@ -11,16 +11,16 @@ end
 
 
 def reduce(source_array, starting_point=0 )
-  i = 0
-  new = starting_point
+  if starting_point
+    new = starting_point
+    i = 0 
+  else
+    new = source_array[0]
+    i = 1 
   while i < source_array.length do 
-    if !source_array[i]
-      return false 
-    else new = new + source_array[i]
-    end
-    i += 1
+    new = yield(new, source_array[i])
+    i += 1 
   end
-  
   return new
 end
 
